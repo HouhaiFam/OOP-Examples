@@ -1,0 +1,37 @@
+package labs;
+
+public class BankAccountApp {
+
+	public static void main(String[] args) {
+		BankAccount acc1 = new BankAccount("465329784");
+
+	}
+
+}
+
+
+
+class BankAccount {
+	//Properties for bank account
+	private static int iD = 1000;		   // Internal iD
+	private String accountNumber;  // iD + random 2-digit number + first 2 of SSN
+	private String routingNumber;
+	private String name;
+	private String SSN;
+	private double balance;
+	
+	// Constructors
+	public BankAccount(String SSN) {
+		System.out.println("New Account Created");
+		this.SSN = SSN;
+		iD++;
+		setAccountNumber();
+	}
+	
+	private void setAccountNumber() {
+		int random = (int) (Math.random() * 100);
+		System.out.println(random);
+		accountNumber = iD + "" + random + SSN.substring(0, 2);
+		System.out.println(accountNumber);
+	}
+}

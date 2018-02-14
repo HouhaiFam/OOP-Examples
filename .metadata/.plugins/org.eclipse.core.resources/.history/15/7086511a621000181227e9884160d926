@@ -1,0 +1,91 @@
+package lab2;
+
+public class StudentDatabase {
+
+	public static void main(String[] args) {
+		Student stu1 = new Student("Jim", "Enrolled", 1000, "Astronomy, Political Theory", 3000);
+		Student stu2 = new Student("Sarah", "Enrolled", 1500, "Linear Algebra", 2500);
+		Student stu3 = new Student("Tom", "Graduated", 2000,"None", 3000);
+					
+		stu1.setEncapsulation("Jim", "3364512564", "Greensboro", "North Carolina");
+		stu2.setEncapsulation("Terry", "3361524235", "Raleigh", "North Carolina");
+		stu3.setEncapsulation("Marty", "3364567898", "Archdale", "North Carolina");
+	}
+	
+}
+
+	class Student { 
+		//Properties for the database
+		private static int iD = 1000; // User Id that is combo of ID, random 4 digit number between 1000-9000 and the last 4 of SSN
+		private String StudentiD;
+		private String name;
+		private String SSN;
+		private String email = "@studentdatabase.com";
+		private String phone;
+		private String city;
+		private String state;
+		private double balance;
+		
+	public Student(String SSN, double initDeposit) {
+			balance = initDeposit;
+			this.SSN = SSN;
+			iD++;
+			setStudentiD();
+	}
+	
+	private void setStudentiD() {
+		int random = (int) (Math.random() * 1000);
+		StudentiD = iD + random + SSN.substring(5, 9);
+		System.out.println("Your Student ID is: "+ StudentiD);
+	}
+	
+	public Student(String name, String status, double pay, String courses, double currentBalance) {
+		
+	}
+	
+	
+	public void email(String name) {
+		System.out.println("New Email Accounted Created: Your new email is" + name + email);
+	}
+	
+	public void setEncapsulation(String name, String phone, String city, String state) {
+		this.name = name;
+		this.phone = phone;
+		this.city = city;
+		this.state = state;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getPhone() {
+		return phone;
+	}
+	
+	public String getCity() {
+		return city;
+	}
+	
+	public String getState() {
+		return state;
+	}
+	
+	public void showBalance() {
+		System.out.println("Balance: $" + balance);
+	}
+	
+	
+	public void enroll(String status) {
+		System.out.println("You are " + status);
+		
+	}
+	
+	public void payBill(double amount) {
+		System.out.println("Paying Bill: " + amount);
+		balance = balance-amount;
+		showBalance();
+		
+	}
+		
+	}

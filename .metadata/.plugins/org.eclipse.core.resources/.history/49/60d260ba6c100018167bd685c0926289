@@ -1,0 +1,130 @@
+package lab2;
+
+public class StudentDatabase {
+
+	public static void main(String[] args) {
+		Student stu1 = new Student("123456789", 3000);
+		Student stu2 = new Student("987654321", 2500);
+		Student stu3 = new Student("456789123", 3500);
+			
+		stu1.setEncapsulation("Jim", "3364512564", "Greensboro", "North Carolina","Astronomy, Political Theory", 3000, "Enrolled");
+		System.out.println("Your phone # is: " + stu1.getPhone());
+		System.out.println("Your city is: " + stu1.getCity());
+		System.out.println("Your state is: " + stu2.getState());
+		stu1.payBill(573);
+		stu1.showBalance();
+		stu1.showCourses();
+		System.out.println(stu1.toString());
+		
+		stu2.setEncapsulation("Terry", "3361524235", "Raleigh", "North Carolina","Linear Algebra", 2500, "Enrolled");
+		System.out.println("Your phone # is: " + stu2.getPhone());
+		System.out.println("Your city is: " + stu2.getCity());
+		System.out.println("Your state is: " + stu2.getState());
+		stu2.payBill(648);
+		stu2.showBalance();
+		stu2.showCourses();
+		System.out.println(stu2.toString());
+		
+		stu3.setEncapsulation("Marty", "3364567898", "Archdale", "North Carolina","None", 3500, "Graduated");
+		System.out.println("Your phone # is: " + stu3.getPhone());
+		System.out.println("Your city is: " + stu3.getCity());
+		System.out.println("Your state is: " + stu3.getState());
+		stu3.payBill(786);
+		stu3.showBalance();
+		stu3.showCourses();
+		System.out.println(stu3.toString());	
+		}
+	}
+
+	class Student { 
+		//Properties for the database
+		private static int iD = 1000; // User Id that is combo of ID, random 4 digit number between 1000-9000 and the last 4 of SSN
+		private String StudentiD;
+		private String name;
+		private String SSN;
+		private String email = "@studentdatabase.com";
+		private String phone;
+		private String city;
+		private String state;
+		private double balance;
+		private String courses;
+		private String status;
+		
+	public Student(String SSN, double initDeposit) {
+			balance = initDeposit;
+			this.SSN = SSN;
+			iD++;
+			setStudentiD();
+	}
+	
+	private void setStudentiD() {
+		int random = (int) (Math.random() * 1000);
+		StudentiD = iD + "" + random + SSN.substring(5, 9);
+		}
+	
+		public void email(String name) {
+		System.out.println("New Email Accounted Created: Your new email is" + name + email);
+	}
+		
+	
+	public void setEncapsulation(String name, String phone, String city, String state, String courses, double initDeposit, String status) {
+		this.name = name;
+		this.phone = phone;
+		this.city = city;
+		this.state = state;
+		this.courses = courses;
+		this.status = status;
+		
+		}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getPhone() {
+		return phone;
+	}
+	
+	public String getCity() {
+		return city;
+	}
+	
+	public String getState() {
+		return state;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+	
+	public String getCourses() {
+		return courses;
+	}
+	
+	
+	public void showBalance() {
+		System.out.println("Balance: $" + balance);
+	}
+	
+	
+	public void enroll(String status) {
+		System.out.println("You are " + status);
+		
+	}
+	
+	public void payBill(double amount) {
+		System.out.println("Paying Bill: " + amount);
+		balance = balance-amount;
+		showBalance();
+		
+	}
+	
+	public void showCourses() {
+		}
+	
+	@Override
+	public String toString() {
+		return "[Name: " +  name + " ]\n[StudentiD: " + StudentiD + "]\n[Balance: " + balance + "]\n[Status: " + status + "]\n[Email: " + email + "]";
+		}
+	}
+	
